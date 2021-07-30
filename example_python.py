@@ -46,9 +46,6 @@ class CategoryTranslation(SeoModelTranslation):
     class Meta:
         unique_together = (("language_code", "category"),)
 
-    def __str__(self) -> str:
-        return self.name if self.name else str(self.pk)
-
     def __repr__(self) -> str:
         class_ = type(self)
         return "%s(pk=%r, name=%r, category_pk=%r)" % (
@@ -57,6 +54,9 @@ class CategoryTranslation(SeoModelTranslation):
             self.name,
             self.category_id,
         )
+    
+    def __str__(self) -> str:
+        return self.name if self.name else str(self.pk)
 
 
 class ProductType(ModelWithMetadata):
